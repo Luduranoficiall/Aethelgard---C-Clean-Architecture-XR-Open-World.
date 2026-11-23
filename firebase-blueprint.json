@@ -1,0 +1,112 @@
+{
+  "entities": {
+    "PlayerProfile": {
+      "title": "PlayerProfile",
+      "description": "Stores individual player progression, character stats, and achievements.",
+      "type": "object",
+      "properties": {
+        "playerId": {
+          "type": "string",
+          "description": "Unique identifier of the player."
+        },
+        "playerName": {
+          "type": "string",
+          "description": "Display name of the hero."
+        },
+        "level": {
+          "type": "number",
+          "description": "Hero level."
+        },
+        "exp": {
+          "type": "number",
+          "description": "Total experience points gained."
+        },
+        "enemiesDefeated": {
+          "type": "number",
+          "description": "Total enemies defeated across sessions."
+        },
+        "portalsTraversed": {
+          "type": "number",
+          "description": "Total dimensional portal travels."
+        },
+        "combosExecuted": {
+          "type": "number",
+          "description": "Total combo strikes performed."
+        },
+        "parriesPerformed": {
+          "type": "number",
+          "description": "Total perfect parries executed."
+        },
+        "lastPlayedDifficulty": {
+          "type": "number",
+          "description": "Difficulty tier last played (1=Fácil, 2=Médio, 3=Difícil, 4=Hard Master)."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO timestamp of the last save."
+        }
+      },
+      "required": ["playerId", "playerName", "level", "exp", "enemiesDefeated"]
+    },
+    "AchieverScore": {
+      "title": "AchieverScore",
+      "description": "Leaderboard entry recording high scores and heroic achievements per difficulty level.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique document identifier."
+        },
+        "playerName": {
+          "type": "string",
+          "description": "Name of the hero."
+        },
+        "difficultyTier": {
+          "type": "number",
+          "description": "Tier number (1=Fácil, 2=Médio, 3=Difícil, 4=Hard Master)."
+        },
+        "difficultyName": {
+          "type": "string",
+          "description": "Display name of the difficulty tier."
+        },
+        "score": {
+          "type": "number",
+          "description": "Total calculated achievement score."
+        },
+        "enemiesDefeated": {
+          "type": "number",
+          "description": "Number of foes slain in this run."
+        },
+        "survivedSeconds": {
+          "type": "number",
+          "description": "Combat survival duration in seconds."
+        },
+        "parryCount": {
+          "type": "number",
+          "description": "Number of perfect parries during the session."
+        },
+        "rankTitle": {
+          "type": "string",
+          "description": "Honorary title earned (e.g. Lenda Viva, Campeão de Aethelgard)."
+        },
+        "achievedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO timestamp of achievement."
+        }
+      },
+      "required": ["playerName", "difficultyTier", "score", "enemiesDefeated", "achievedAt"]
+    }
+  },
+  "firestore": {
+    "/players/{playerId}": {
+      "schema": "PlayerProfile",
+      "description": "Player progression and state profiles."
+    },
+    "/achievers/{achieverId}": {
+      "schema": "AchieverScore",
+      "description": "Public leaderboard of top achievers across difficulty levels."
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Aethelgard - C# Clean Architecture XR Open World",
+  "description": "Engenharia de alto nível com Clean Architecture em C# puro, 4 níveis de dificuldade (Fácil, Médio, Difícil, Hard Master Profissional), testes unitários exaustivos e simulador 3D WebXR de mundos abertos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

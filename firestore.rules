@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Top Achievers Leaderboard: publicly viewable, creatable with valid fields
+    match /achievers/{achieverId} {
+      allow read: if true;
+      allow create: if request.resource.data.playerName is string
+                    && request.resource.data.score is number
+                    && request.resource.data.difficultyTier is number;
+      allow update, delete: if false; // Immutable high score archives
+    }
+
+    // Player Progression Profiles
+    match /players/{playerId} {
+      allow read: if true;
+      allow write: if request.resource.data.playerName is string
+                   && request.resource.data.level is number;
+    }
+  }
+}
